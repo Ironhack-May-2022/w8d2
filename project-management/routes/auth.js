@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { isAuthenticated } = require('../middleware/jwt')
+const { isAuthenticated } = require('../middlewares/jwt')
 const User = require('../models/User.model')
 
 router.post('/signup', (req, res, next) => {
@@ -27,6 +27,7 @@ router.post('/signup', (req, res, next) => {
 			const salt = bcrypt.genSaltSync();
 			const hashedPassword = bcrypt.hashSync(password, salt)
 			// create the new user
+
 			return User.create({ email, password: hashedPassword, name })
 				.then(createdUser => {
 					const { email, name, _id } = createdUser

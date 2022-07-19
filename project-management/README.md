@@ -38,3 +38,10 @@ axios.get('/api/projects)
 ```
 
 The advantage here is that you don't need to change the url when the app is deployed.
+
+## Authentication
+
+Backend
+```bash
+$ npm install bcryptjs jsonwebtoken express-jwt
+```

@@ -19,8 +19,10 @@ require("./config")(app);
 const allRoutes = require("./routes/index.routes");
 app.use("/api", allRoutes);
 
+const { isAuthenticated } = require('./middlewares/jwt')
+
 const projects = require("./routes/projects")
-app.use("/api/projects", projects);
+app.use("/api/projects", isAuthenticated, projects);
 
 const auth = require("./routes/auth")
 app.use("/api/auth", auth);
